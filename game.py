@@ -1,3 +1,4 @@
+import random
 
 class GameOfLife():
     def __init__(self, width, height):
@@ -5,6 +6,11 @@ class GameOfLife():
         self.height = height
         #self.grid = [[0 for i in range(width)] for j in range(height)]
         self.grid = self.create_blank_grid()
+
+    def randomize_grid(self):
+        for row in range(self.width):
+            for col in range(self.height):
+                self.grid[row][col] = random.randint(0, 1)
 
     def create_blank_grid(self):
         return [[0 for i in range(self.width)] for j in range(self.height)]
@@ -14,10 +20,10 @@ class GameOfLife():
 
     def neighbors(self, row, col):
         enums = [ 
-            (0, 1),  (0, -1),
-            (1, 0),  (-1, 0),
-            (1, 1),  (-1, -1),
-            (1, -1), (-1, 1)
+            (0,  1), (0,  -1),
+            (1,  0), (-1,  0),
+            (1,  1), (-1, -1),
+            (1, -1), (-1,  1)
         ]
         out = []
         for offset in enums:
