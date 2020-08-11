@@ -5,12 +5,14 @@ pygame.init()
 
 size = width, height = 1000, 1000
 
+square_size = 10
 
-glife = GameOfLife(width//10, height//10)
+
+glife = GameOfLife(width//square_size, height//square_size)
 glife.randomize_grid()
 
 screen = pygame.display.set_mode(size)
-grey = pygame.Color(211, 211, 211)
+light_blue = pygame.Color(173, 216, 230)
 
 done = False
 while not done:
@@ -20,8 +22,10 @@ while not done:
     for row in range(glife.width):
         for col in range(glife.height):
             if glife.grid[row][col]:
-                ex = pygame.Rect(row*10, col*10, 10, 10)
-                pygame.draw.rect(screen, grey, ex)
+                ex = pygame.Rect(
+                        row*square_size, col*square_size,
+                        square_size, square_size)
+                pygame.draw.rect(screen, light_blue, ex)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
